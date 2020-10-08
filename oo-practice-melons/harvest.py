@@ -6,7 +6,7 @@
 class MelonType(object):
     """A species of melon at a melon farm."""
 
-    def __init__(self, code, first_harvest, color, is_seedless, is_bestseller, 
+    def __init__(self, code, first_harvest, color, is_seedless, is_bestseller,
                  name):
         """Initialize a melon."""
 
@@ -48,7 +48,7 @@ def make_melon_types():
     cas.add_pairing('strawberry')
     cas.add_pairing('mint')
     all_melon_types.append(cas)
-    
+
     cren = MelonType('cren', 1996, 'green', False, False, 'Crenshaw')
     cren.add_pairing('proscuitto')
     all_melon_types.append(cren)
@@ -57,18 +57,18 @@ def make_melon_types():
     yw.add_pairing('ice cream')
     all_melon_types.append(yw)
 
-
     return all_melon_types
 
 
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
-    
+
     for melon in melon_types:
-        print(f'{melon.name} pairs with')        
+        print(f'{melon.name} pairs with')
         for pair in melon.pairings:
             print(f'-{pair}')
         print()
+
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
@@ -85,7 +85,7 @@ def make_melon_type_lookup(melon_types):
 # Part 2   #
 ############
 
-class Melon(object):  
+class Melon(object):
     """A melon in a melon harvest."""
 
     # Fill in the rest
@@ -116,14 +116,14 @@ def make_melons(melon_types):
     melon_7 = Melon(melons_by_id['cren'], 2, 3, "Field 4", "Michael")
     melon_8 = Melon(melons_by_id['musk'], 6, 7, "Field 4", "Michael")
     melon_9 = Melon(melons_by_id['yw'], 7, 10, "Field 3", "Sheila")
-    
+
     return [melon_1, melon_2, melon_3, melon_4, melon_5, melon_6, melon_7, melon_8, melon_9]
+
 
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
-    
 
-    # Fill in the rest 
-
-
-
+    # Fill in the rest
+    for melon in melons:
+        print(
+            f"Harvested by {melon.harvested_by} from {melon.harvested_from} {'(CAN BE SOLD)' if melon.is_sellable() else '(NOT SELLABLE)'} ")
