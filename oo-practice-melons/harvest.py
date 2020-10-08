@@ -127,3 +127,23 @@ def get_sellability_report(melons):
     for melon in melons:
         print(
             f"Harvested by {melon.harvested_by} from {melon.harvested_from} {'(CAN BE SOLD)' if melon.is_sellable() else '(NOT SELLABLE)'} ")
+
+
+def create_melon_objects(filename):
+    melon_object = []
+    data = open(filename)
+    for line in data:
+        _, shape_rating, _, color_rating, _, code, _, _, harvested_by, * \
+            harvested_from = line.rstrip().split(" ")
+        shape_rating = int(shape_rating)
+        color_rating = int(color_rating)
+        harvested_from.remove('#')
+        harvested_from = ' '.join(harvested_from)
+
+        melon_by_id = make_melon_type_lookup(make_melon_types())
+        melon = Melon(melon_by_id[code], shape_rating,
+                      color_rating, harvested_from, harvested_by)
+        melon_object.append(melon)
+    data.close()
+
+    return melon_object
