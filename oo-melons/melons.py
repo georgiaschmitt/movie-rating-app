@@ -1,5 +1,6 @@
 """Classes for melon orders."""
-
+import random
+from datetime import datetime
 
 class AbstractMelonOrder():
     """An abstract base class that other Melon Orders inherit from."""
@@ -9,10 +10,14 @@ class AbstractMelonOrder():
         self.species = species
         self.qty = qty
 
+    def get_base_price(self):
+        """ Caculate base price based on splurge pricing """
+        return random.randint(5,9)
+
     def get_total(self):
         """Calculate price, including tax."""
 
-        base_price = 5 * 1.5
+        base_price = self.get_base_price() * 1.5
         total = (1 + self.tax) * self.qty * base_price
 
         if self.order_type == 'international' and self.qty < 10:
@@ -30,6 +35,8 @@ class GovernmentMelonOrder(AbstractMelonOrder):
     """A government melon order, needs to pass inspection and exempt from tax"""
 
     def __init__(self, species, qty):
+        super().__init__(species, qty)
+        self.order_type = 'government'
         self.tax = 0
         self.passed_inspection = False
 
