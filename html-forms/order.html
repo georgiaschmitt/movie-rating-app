@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <header>
+      <h1>Order a Melongram</h1>
+    </header>
+  </head>
+  <body>
+
+    <section>
+        <p>
+            There's no better way to show a loved one you care than with a
+            Melongram.<br /><br />
+            Each Melongram comes with a custom message printed on high-quality
+            cardstock and your choice of a hand-picked, premium melon.
+          </p>
+      
+          <h2>Melon Options</h2>
+      
+          <p>Choose from one of these melons:</p>
+          <table>
+            <tr>
+              <td>Watermelon</td>
+              <td>$1,200.00</td>
+            </tr>
+            <tr>
+              <td>Canteloupe</td>
+              <td>$400.00</td>
+            </tr>
+            <tr>
+              <td>Honeydew</td>
+              <td>$1,750,00.00</td>
+            </tr>
+          </table>
+
+    </section>
+
+    <section>
+        <h2>Order Form</h2>
+    <form>
+      <div>
+        <label for="your-name">Your name</label>
+        <input type="text" name="Your name" id="your-name" />
+      </div>
+      <div>
+        <label for="recipient">Who are we sending this to?</label>
+        <input type="text" name="recipient" id="recipient" />
+      </div>
+      <div>
+        <label for="melon-id"> Choose a melon</label>
+        <select name="melon" id="melon-id">
+          <option value="watermelon">Watermelon</option>
+          <option value="canteloupe">Canteloupe</option>
+          <option value="honeydew">Honeydew</option>
+        </select>
+      </div>
+      <div>
+        <label>When should we deliver?</label>
+        <input type="radio" name="time" value="am" />
+        <label>Morning</label>
+        <input type="radio" name="time" value="pm" />
+        <label>Evening</label>
+        <input type="radio" name="time" value="any" />
+        <label>Any time</label>
+      </div>
+
+      <div>
+        <label for="message-id">Enter your message:</label>
+        <textarea name="message" id="message-id"></textarea>
+      </div>
+
+      <fieldset>
+        <legend for="subscribe-id">Subscribe to our newsletter</legend>
+        <div>
+          <input
+            type="checkbox"
+            name="subscribe"
+            value="yes"
+            id="subscribe-id"
+          />
+          <label>Yes</label>
+        </div>
+      </fieldset>
+      <!-- <input type = "submit"> -->
+      <button type="submit">Submit</button>
+    </form>
+    </section>
+  </body>
+</html>
