@@ -7,14 +7,22 @@
     <h1>Hi There!</h1>
 
     <form action="/madlib">
-        <label>Please fill in the following prompts:</label>
+      <label>Please fill in the following prompts:</label>
       <div>
         <label for="person">Person:</label>
         <input type="text" name="person" id="person" />
       </div>
       <div>
-        <label for="color">Color:</label>
-        <input type="text" name="color" id="color" />
+        <label>Color:</label>
+
+        <input type="checkbox" name="color" value="red" />
+        <label>Red</label>
+
+        <input type="checkbox" name="color" value="green" />
+        <label>Green</label>
+
+        <input type="checkbox" name="color" value="blue" />
+        <label>Blue</label>
       </div>
       <div>
         <label for="noun">Noun:</label>
@@ -24,7 +32,7 @@
         <label for="adj">Adjective:</label>
         <input type="text" name="adj" id="adj" />
       </div>
-      <input type="submit"> 
+      <input type="submit" />
     </form>
   </body>
 </html>

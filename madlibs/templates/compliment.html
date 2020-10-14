@@ -4,7 +4,15 @@
   <title>A Compliment</title>
 </head>
 <body>
-    Hi {{ person }}! I think you're {{ compliment }}!
+    Hi {{ person }}! I think you're so:
+    {% for compliment in compliments %}
+      {% if compliment != compliments[-1]%}
+        {{ compliment}},
+      {% else %}
+        {{ compliment}}!
+      {%endif%}
+    {%endfor%}
+  
     <br>
     <br>
     <div>
