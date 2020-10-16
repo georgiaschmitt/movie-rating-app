@@ -81,7 +81,7 @@ def show_shopping_cart():
     cart_list = []
     total = 0
     for melon_id, qty in cart.items():
-        melon = melons.get_by_id(melon_id)
+        melon = melons.get_by_id(melon_id) 
         qty = int(qty)
         melon.quantity = qty
         melon.total = melon.quantity * melon.price
@@ -110,12 +110,21 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
     
-    if 'cart' in session:
-        cart = session['cart']
-    else:
-        cart = session['cart'] = {}
+    # if 'cart' in session:
+    #     cart = session['cart']
+    # else:
+    #     cart = session['cart'] = {}
 
-    cart[melon_id] = cart.get(melon_id,0) + 1
+    # cart[melon_id] = cart.get(melon_id,0) + 1
+
+    if "cart" not in session:
+        session["cart"] = {}
+
+    if melon_id not in session["cart"]:
+        session["cart"][melon_id] = 0
+    
+    session["cart"][melon_id] += 1
+    print(session["cart"])
 
     flash('Successfully added melon to cart')
 
