@@ -13,9 +13,14 @@ def is_mel(name, email):
     True
     >>> is_mel('Judith Butler', 'judith@awesome.com')
     False"""
+    mel_first , mel_last = "Mel Melitpolski".split()
+    if len(name.split()) == 2: 
+        name_first, name_last = name.split()
+    else: 
+        name_first = name
+        name_last = ' '
 
-    return name == "Mel Melitpolski" or email == "mel@ubermelon.com"
-
+    return name_first.lower() == mel_first.lower() or name_last.lower() == mel_last.lower() or email.lower() == "mel@ubermelon.com"
 
 def most_and_least_common_type(treats):
     """Given list of treats, return most and least common treat types.
