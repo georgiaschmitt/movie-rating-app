@@ -155,7 +155,7 @@ def process_login():
     email = request.form.get('email')
     password = request.form.get('password')
     customers_dict = customers.read_customer_types_from_file('customers.txt')
-    
+
     if email in customers_dict:
         customer = customers.get_by_email(email)
         if password == customer.password:
@@ -168,6 +168,14 @@ def process_login():
     else:
         flash('No customer with that email found.')
         return redirect('/login')
+
+
+@app.route("/logout")
+def process_logout():
+    del session['logged_in_customer_email']
+    flash('Logged out')
+    
+    return redirect('/melons')
 
 
 @app.route("/checkout")
