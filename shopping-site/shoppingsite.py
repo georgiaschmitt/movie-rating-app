@@ -6,10 +6,11 @@ put melons in a shopping cart.
 Authors: Joel Burton, Christian Fernandez, Meggie Mahnken, Katie Byers.
 """
 
-from flask import Flask, session, render_template, redirect, flash
+from flask import Flask, session, render_template, redirect, flash, request
 import jinja2
 
 import melons
+import customers
 
 app = Flask(__name__)
 
@@ -76,18 +77,18 @@ def show_shopping_cart():
     #
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
-    
+
     cart = session.get('cart', {})
     cart_list = []
     total = 0
     for melon_id, qty in cart.items():
-        melon = melons.get_by_id(melon_id) 
+        melon = melons.get_by_id(melon_id)
         qty = int(qty)
         melon.quantity = qty
         melon.total = melon.quantity * melon.price
         cart_list.append(melon)
         total += melon.total
-    
+
     return render_template("cart.html", cart=cart_list, total=total)
 
 
@@ -109,14 +110,14 @@ def add_to_cart(melon_id):
     # - increment the count for that melon id by 1
     # - flash a success message
     # - redirect the user to the cart page
-    
+
     if 'cart' in session:
         cart = session['cart']
     else:
         cart = session['cart'] = {}
 
-    cart[melon_id] = cart.get(melon_id,0) + 1
-    
+    cart[melon_id] = cart.get(melon_id, 0) + 1
+
     flash('Successfully added melon to cart')
 
     return redirect("/cart")
@@ -151,7 +152,22 @@ def process_login():
     # - if they don't, flash a failure message and redirect back to "/login"
     # - do the same if a Customer with that email doesn't exist
 
-    return "Oops! This needs to be implemented"
+    email = request.form.get('email')
+    password = request.form.get('password')
+    customers_dict = customers.read_customer_types_from_file('customers.txt')
+    
+    if email in customers_dict:
+        customer = customers.get_by_email(email)
+        if password == customer.password:
+            session['logged_in_customer_email'] = email
+            flash('Login successful!')
+            return redirect('/melons')
+        else:
+            flash('Incorrect password')
+            return redirect('/login')
+    else:
+        flash('No customer with that email found.')
+        return redirect('/login')
 
 
 @app.route("/checkout")
