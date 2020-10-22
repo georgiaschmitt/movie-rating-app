@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+    <body>
+        <h3>{{ github }} is the GitHub account for {{first}} {{last}} </h3>
+        <ul>
+            {% for grade in grades %}
+                <li>
+                    <p>Student {{github}} received grade of {{grade[1]}} for {{grade[0]}} </p>
+                </li>
+            {% endfor %}    
+        </ul>
+    </body>
+{% endblock %}
+

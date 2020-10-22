@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+    <body>
+
+    <form action="/student-add", method="POST">
+        <div>
+            <label>What is your first name?
+                <input type="text" name="first_name">
+            </label>
+        </div> 
+        <div>
+            <label>What is your last name?
+                <input type="text" name="last_name">
+            </label> 
+        </div>
+        <div>
+            <label>What is your github name?
+                <input type="text" name="github">
+            </label> 
+        </div>
+        <div>
+            <input type='submit'/>
+        </div>
+    </form>
+
+    </body>
+{% endblock %}
+
