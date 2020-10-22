@@ -13,7 +13,7 @@ class User(db.Model):
                         autoincrement=True)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    
+
     # ratings = a list of Rating objects
 
 
@@ -46,7 +46,7 @@ class Rating(db.Model):
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.movie_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
-    movie = db.relationship('Movie', backref='ratings')
+    me = db.relationship('Movie', backref='ratings')
     user = db.relationship('User', backref='ratings')
 
     def __repr__(self):
