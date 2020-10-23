@@ -23,15 +23,22 @@ with open('data/movies.json') as f:
 # to create fake ratings later
 movies_in_db = []
 for movie in movie_data:
-    # TODO: get the title, overview, and poster_path from the movie
-    # dictionary.
+    
     title = movie['title']
     overview = movie['overview']
     poster_path = movie['poster_path']
-    
-    
-    #Then, get the release_date and convert it to a
-    # datetime object with datetime.strptime
-    release_date = movie['release_date']
+    release_date = datetime.strptime(movie['release_date'], "%Y-%m-%d")
 
-    # TODO: create a movie here and append it to movies_in_db
+    movie_in_db = crud.create_movie(title, overview, release_date, poster_path)
+    movies_in_db.append(movie_in_db)
+
+for n in range(10):
+    email = f'user{n}@test.com'
+    password = 'test'
+
+    user = crud.create_user(email, password)
+
+    for i in range(10):
+        score = randint(1,5)
+        movie = choice(movies_in_db)
+        crud.create_rating(user, movie, score)
