@@ -5,7 +5,9 @@
         <ul>
             {% for grade in grades %}
                 <li>
-                    <p>Student {{github}} received grade of {{grade[1]}} for {{grade[0]}} </p>
+                    <a href= '/project?title={{ grade.project_title }}'>
+                        {{ grade.project_title }}
+                    </a> = {{ grade.grade}}
                 </li>
             {% endfor %}    
         </ul>

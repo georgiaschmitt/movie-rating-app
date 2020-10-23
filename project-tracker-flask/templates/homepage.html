@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+
+<body>
+
+    <h1>Project Tracker </h1>
+  
+    <h2>Students</h2>
+      <ul>
+        {% for student in students %}
+          <li>
+            <a href="/student?github={{ student.github }}">
+              {{ student.first_name }} {{ student.last_name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+  
+    <h2>Projects</h2>
+      <ul>
+        {% for project in projects %}
+          <li>
+            <a href="/project?title={{ project.title }}">
+              {{ project.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      
+{% endblock %}
+  
